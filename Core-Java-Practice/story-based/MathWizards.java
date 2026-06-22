@@ -97,7 +97,7 @@ class MathWizard {
     }
 }
 
-public class Main {
+public class MathWizards {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
