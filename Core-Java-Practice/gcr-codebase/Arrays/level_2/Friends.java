@@ -8,7 +8,6 @@ public class Friends {
         int[] ages = new int[3];
         double[] heights = new double[3];
 
-        // Input ages and heights
         for (int i = 0; i < 3; i++) {
             System.out.print("Enter age of " + names[i] + ": ");
             ages[i] = sc.nextInt();
@@ -20,7 +19,7 @@ public class Friends {
         int youngest = 0;
         int tallest = 0;
 
-        // Find youngest and tallest
+       
         for (int i = 1; i < 3; i++) {
             if (ages[i] < ages[youngest]) {
                 youngest = i;

@@ -13,7 +13,6 @@ public class  Bonus {
         double totalOldSalary = 0;
         double totalNewSalary = 0;
 
-        // Input
         for (int i = 0; i < 10; i++) {
             System.out.println("Employee " + (i + 1));
 
@@ -30,13 +29,12 @@ public class  Bonus {
             }
         }
 
-        // Calculate Bonus and New Salary
+       
         for (int i = 0; i < 10; i++) {
 
             if (service[i] > 5) {
-                bonus[i] = salary[i] * 0.05; // 5% bonus
             } else {
-                bonus[i] = salary[i] * 0.02; // 2% bonus
+                bonus[i] = salary[i] * 0.02; 
             }
 
             newSalary[i] = salary[i] + bonus[i];
