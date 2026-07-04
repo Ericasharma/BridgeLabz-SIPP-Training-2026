@@ -1,114 +1,79 @@
-abstract class Patient {
-    private int patientId;
-    private String name;
-    private int age;
+abstract class Shape {
+    abstract double area();
+    abstract double perimeter();
+}
 
-    public int getPatientId() {
-        return patientId;
+class Circle extends Shape {
+    private double radius;
+
+    Circle(double radius) {
+        this.radius = radius;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public double getRadius() {
+        return radius;
     }
 
-    public String getName() {
-        return name;
+    double area() {
+        return Math.PI * radius * radius;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    abstract double calculateBill();
-
-    public void displayPatientDetails() {
-        System.out.println("Patient ID: " + patientId);
-        System.out.println("Name: " + name);
-        System.out.println("Age: " + age);
+    double perimeter() {
+        return 2 * Math.PI * radius;
     }
 }
 
-class InPatient extends Patient {
-    private double roomCharges;
-    private double treatmentCharges;
+class Rectangle extends Shape {
+    double length, width;
 
-    public double getRoomCharges() {
-        return roomCharges;
+    Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
     }
 
-    public void setRoomCharges(double roomCharges) {
-        this.roomCharges = roomCharges;
+    double area() {
+        return length * width;
     }
 
-    public double getTreatmentCharges() {
-        return treatmentCharges;
-    }
-
-    public void setTreatmentCharges(double treatmentCharges) {
-        this.treatmentCharges = treatmentCharges;
-    }
-
-    double calculateBill() {
-        return roomCharges + treatmentCharges;
+    double perimeter() {
+        return 2 * (length + width);
     }
 }
 
-class OutPatient extends Patient {
-    private double consultationFees;
-    private double treatmentCharges;
+class Triangle extends Shape {
+    double a, b, c;
 
-    public double getConsultationFees() {
-        return consultationFees;
+    Triangle(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
     }
 
-    public void setConsultationFees(double consultationFees) {
-        this.consultationFees = consultationFees;
+    double area() {
+        double s = (a + b + c) / 2;
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
-    public double getTreatmentCharges() {
-        return treatmentCharges;
-    }
-
-    public void setTreatmentCharges(double treatmentCharges) {
-        this.treatmentCharges = treatmentCharges;
-    }
-
-    double calculateBill() {
-        return consultationFees + treatmentCharges;
+    double perimeter() {
+        return a + b + c;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
+        Shape[] shapes = new Shape[3];
 
-        InPatient inPatient = new InPatient();
-        inPatient.setPatientId(101);
-        inPatient.setName("Rahul");
-        inPatient.setAge(25);
-        inPatient.setRoomCharges(5000);
-        inPatient.setTreatmentCharges(3000);
+        shapes[0] = new Circle(5);
+        shapes[1] = new Rectangle(4, 6);
+        shapes[2] = new Triangle(3, 4, 5);
 
-        OutPatient outPatient = new OutPatient();
-        outPatient.setPatientId(102);
-        outPatient.setName("Aman");
-        outPatient.setAge(30);
-        outPatient.setConsultationFees(500);
-        outPatient.setTreatmentCharges(1500);
+        System.out.println("Shape\t\tArea\t\tPerimeter");
 
-        inPatient.displayPatientDetails();
-        System.out.println("Bill Amount: " + inPatient.calculateBill());
-
-        System.out.println();
-
-        outPatient.displayPatientDetails();
-        System.out.println("Bill Amount: " + outPatient.calculateBill());
+        for (Shape s : shapes) {
+            System.out.printf("%s\t\t%.2f\t\t%.2f%n",
+                    s.getClass().getSimpleName(),
+                    s.area(),
+                    s.perimeter());
+        }
     }
 }
